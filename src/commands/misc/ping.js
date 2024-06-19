@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "ping",
   description: "Pong!",
@@ -16,6 +16,6 @@ module.exports = {
       .setDescription(`Latency: \`${client.ws.ping}\`ms`)
       .setFooter({ text: "potato" });
 
-    interaction.reply({ embeds: [embed] })
+    interaction.reply({ embeds: [embed] });
   },
 };
