@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { Client, IntentsBitField, EmbedBuilder, Message } = require('discord.js');
+const eventHandler = require('./handlers/eventHandler');
 
 const client = new Client({
   intents: [
@@ -10,27 +11,6 @@ const client = new Client({
   ],
 });
 
-client.on('ready', (c) => {
-  console.log('A potato has been picked from the garden.')
-})
-
-client.on('interactionCreate', (interaction) => {
-  if (!interaction.isCommand()) return;
-
-  if (interaction.commandName === 'ping'){
-    const startTime = Date.now()
-    const endTime = Date.now()
-    const ping = endTime - startTime;
-
-    const embed = new EmbedBuilder()
-    .setColor(0x8b7045)
-    .setTitle('Pong! 🏓')
-    .setDescription(`Latency: ${ping}ms`)
-    .setFooter({ text: 'potato'})
-
-
-    interaction.reply({ embeds: [embed] })
-  }
-})
+eventHandler(client);
 
 client.login(process.env.TOKEN);
